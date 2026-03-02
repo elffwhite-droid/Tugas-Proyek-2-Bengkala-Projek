@@ -1,42 +1,44 @@
-﻿# Tugas-Proyek-2-Bengkala-Projek
-                                                                                                             #Bengkala Projek
-banner
-
-fork
-
-Windows Linux
-
-SQLite GitHub Python Telegram Bot
-
+Bengkala Projek
+<p align="center"> <img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?q=80&w=1000&auto=format&fit=crop" width="700"> </p> <p align="center"> <b>Sistem Manajemen UMKM Berbasis Python & Telegram Bot</b> </p> <p align="center"> <img src="https://img.shields.io/badge/Platform-Windows-blue"> <img src="https://img.shields.io/badge/Platform-Linux-green"> <img src="https://img.shields.io/badge/Database-SQLite-lightgrey"> <img src="https://img.shields.io/badge/Language-Python-yellow"> <img src="https://img.shields.io/badge/Integration-TelegramBot-2CA5E0"> </p>
 👥 Our Team
+
 Hanif
+
 Suta
+
 Fikri
 
 🧠 About Bengkala Projek
 
-Bengkala Projek adalah sistem manajemen digital sederhana yang dibuat untuk membantu UMKM dalam mencatat transaksi, stok barang, dan laporan harian secara lebih rapi dan efisien.
+Bengkala Projek adalah sistem manajemen digital sederhana yang membantu UMKM mencatat:
 
-✨ Asal Nama Bengkala Projek
+Transaksi penjualan
 
-Bengkala → Terinspirasi dari kata “Bengkel” + “Skala”
-Maknanya: tempat berkembang dan bertumbuh, dari usaha kecil menuju skala yang lebih besar.
+Stok barang
 
-Projek → Melambangkan proses belajar, eksperimen, dan pengembangan berkelanjutan dalam dunia teknologi.
+Laporan harian
 
-🎯 Filosofi:
-Bengkala Projek adalah simbol tempat “memperbaiki dan mengembangkan” usaha tradisional dengan sentuhan teknologi modern.
+Dirancang agar pencatatan usaha menjadi lebih rapi, efisien, dan siap berkembang.
 
-Seperti bengkel yang memperbaiki mesin, sistem ini membantu memperbaiki pencatatan usaha agar lebih tertata, efisien, dan siap naik level 🚀
+✨ Asal Nama
+
+Bengkala = Bengkel + Skala
+Tempat memperbaiki dan mengembangkan usaha kecil agar bisa naik level.
+
+Projek melambangkan proses belajar dan pengembangan teknologi secara berkelanjutan.
+
+🎯 Filosofi
+
+Seperti bengkel memperbaiki mesin, Bengkala Projek membantu memperbaiki sistem pencatatan usaha tradisional menjadi lebih modern dan terstruktur 🚀
 
 🎯 Project Goals
 
-Membantu UMKM mencatat transaksi secara terstruktur
+Mencatat transaksi secara terstruktur
 
 Mengurangi kesalahan pencatatan manual
 
-Memberikan laporan penjualan yang lebih rapi dan jelas
+Menyediakan laporan yang rapi dan jelas
 
 Mengembangkan sistem dari CLI menjadi Telegram Bot
 
-Menjadi pondasi pengembangan sistem berbasis database yang lebih besar
+Menjadi pondasi sistem berbasis database yang lebih besar
