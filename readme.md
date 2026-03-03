@@ -31,15 +31,7 @@ Projek melambangkan proses belajar dan pengembangan teknologi secara berkelanjut
 
 Seperti bengkel memperbaiki mesin, Bengkala Projek membantu memperbaiki sistem pencatatan usaha tradisional menjadi lebih modern dan terstruktur 🚀
 
-🎯 Project Goals
+  
 
-Mencatat transaksi secara terstruktur
 
-Mengurangi kesalahan pencatatan manual
-
-Menyediakan laporan yang rapi dan jelas
-
-Mengembangkan sistem dari CLI menjadi Telegram Bot
-
-Menjadi pondasi sistem berbasis database yang lebih besar
 
