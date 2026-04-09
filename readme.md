@@ -8,7 +8,7 @@ Hanif Faiz Alfarisy
 
 Muhammad Fajrul Suta Galang
 
-Fikri Ahmad Adz-dzakwan sss
+Fikri Ahmad Adz-dzakwan 
 
 **✨ Asal Nama**
 
