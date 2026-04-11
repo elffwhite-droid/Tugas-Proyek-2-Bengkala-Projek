@@ -83,3 +83,11 @@ async def tambah_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("? Proses tambah produk dibatalkan.", reply_markup=main_menu())
     context.user_data.clear()
     return ConversationHandler.END
+
+# ================= BROADCAST =================
+async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        return
+    if not context.args:
+        await update.message.reply_text("Gunakan: /broadcast [pesan]")
+        return
