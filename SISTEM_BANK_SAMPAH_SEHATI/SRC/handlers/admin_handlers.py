@@ -90,3 +90,8 @@ async def hapus_produk_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != ADMIN_ID:
         await update.message.reply_text("❌ Hanya admin yang boleh.")
         return
+    
+    data = get_produk()
+    if not data:
+        await update.message.reply_text("❌ Belum ada produk yang bisa dihapus.")
+        return
