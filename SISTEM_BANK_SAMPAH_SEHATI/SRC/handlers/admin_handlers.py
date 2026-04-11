@@ -55,3 +55,27 @@ async def tambah_stok(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except:
         await update.message.reply_text("⚠️ Stok harus angka. Coba lagi:")
         return STOK
+    
+async def tambah_deskripsi(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("❌ Hanya admin yang boleh.")
+        context.user_data.clear()
+        return ConversationHandler.END
+
+    nama = context.user_data.get('nama')
+    harga = context.user_data.get('harga')
+    stok = context.user_data.get('stok')
+    deskripsi = update.message.text.strip()
+
+    tambah_produk(nama, harga, stok, deskripsi)
+
+    await update.message.reply_text(
+        f"✅ Produk berhasil ditambahkan!\n\n"
+        f"Nama: {nama}\n"
+        f"Harga: Rp {harga:,}\n"
+        f"Stok: {stok}\n"
+        f"Deskripsi: {deskripsi}",
+        reply_markup=main_menu()
+    )
+    context.user_data.clear()
+    return ConversationHandler.END
