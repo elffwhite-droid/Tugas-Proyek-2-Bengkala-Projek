@@ -84,3 +84,9 @@ async def tambah_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("❌ Proses tambah produk dibatalkan.", reply_markup=main_menu())
     context.user_data.clear()
     return ConversationHandler.END
+
+# ================= HAPUS PRODUK =================
+async def hapus_produk_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("❌ Hanya admin yang boleh.")
+        return
