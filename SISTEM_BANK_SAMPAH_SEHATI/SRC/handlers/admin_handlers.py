@@ -26,3 +26,17 @@ async def tambah_nama(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['nama'] = update.message.text.strip()
     await update.message.reply_text("?? Masukkan **harga** (boleh pakai titik):\nContoh: 50000 atau 50.000")
     return HARGA
+
+async def tambah_harga(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("? Hanya admin yang boleh.")
+        context.user_data.clear()
+        return ConversationHandler.END
+
+    try:
+        context.user_data['harga'] = clean_price(update.message.text)
+        await update.message.reply_text("?? Masukkan **stok** (angka saja):")
+        return STOK
+    except:
+        await update.message.reply_text("?? Harga harus berupa angka. Coba lagi:")
+        return HARGA
