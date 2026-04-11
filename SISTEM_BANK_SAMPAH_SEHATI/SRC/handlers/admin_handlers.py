@@ -65,3 +65,5 @@ async def tambah_deskripsi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     harga = context.user_data.get('harga')
     stok = context.user_data.get('stok')
     deskripsi = update.message.text.strip()
+    
+    tambah_produk(nama, harga, stok, deskripsi)
