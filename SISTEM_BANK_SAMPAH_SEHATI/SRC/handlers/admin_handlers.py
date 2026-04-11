@@ -91,3 +91,14 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
         await update.message.reply_text("Gunakan: /broadcast [pesan]")
         return
+    
+    text = " ".join(context.args)
+    users = get_all_users()
+    success = 0
+    for uid in users:
+        try:
+            await context.bot.send_message(uid, text)
+            success += 1
+        except:
+            pass
+    await update.message.reply_text(f"? Broadcast terkirim ke {success} user.")
