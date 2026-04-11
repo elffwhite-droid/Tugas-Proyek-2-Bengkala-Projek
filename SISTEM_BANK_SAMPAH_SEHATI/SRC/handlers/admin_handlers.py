@@ -67,3 +67,14 @@ async def tambah_deskripsi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     deskripsi = update.message.text.strip()
     
     tambah_produk(nama, harga, stok, deskripsi)
+    
+    await update.message.reply_text(
+        f"? Produk berhasil ditambahkan!\n\n"
+        f"Nama: {nama}\n"
+        f"Harga: Rp {harga:,}\n"
+        f"Stok: {stok}\n"
+        f"Deskripsi: {deskripsi}",
+        reply_markup=main_menu()
+    )
+    context.user_data.clear()
+    return ConversationHandler.END
