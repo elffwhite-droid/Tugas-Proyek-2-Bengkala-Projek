@@ -1,0 +1,28 @@
+from telegram import Update
+from telegram.ext import ContextTypes, ConversationHandler
+from database import tambah_produk, get_produk, hapus_produk, get_all_users
+from utils.keyboards import main_menu
+from utils.helpers import clean_price
+from config import ADMIN_ID
+
+NAMA, HARGA, STOK, DESKRIPSI = range(4)
+
+# ================= TAMBAH PRODUK =================
+async def tambah_produk_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("❌ Hanya admin yang boleh menambahkan produk.")
+        return ConversationHandler.END
+
+    await update.message.reply_text("🛍️ Masukkan **nama produk**:")
+    return NAMA
+
+
+async def tambah_nama(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("❌ Hanya admin yang boleh.")
+        context.user_data.clear()
+        return ConversationHandler.END
+
+    context.user_data['nama'] = update.message.text.strip()
+    await update.message.reply_text("💰 Masukkan **harga** (boleh pakai titik):\nContoh: 50000 atau 50.000")
+    return HARGA
