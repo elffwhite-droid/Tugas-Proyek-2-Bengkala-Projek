@@ -79,3 +79,8 @@ async def tambah_deskripsi(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     context.user_data.clear()
     return ConversationHandler.END
+
+async def tambah_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("❌ Proses tambah produk dibatalkan.", reply_markup=main_menu())
+    context.user_data.clear()
+    return ConversationHandler.END
