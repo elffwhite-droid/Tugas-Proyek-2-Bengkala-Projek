@@ -113,3 +113,22 @@ async def handle_hapus_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(f"✅ Produk ID {produk_id} berhasil dihapus!", reply_markup=main_menu())
     except:
         await update.message.reply_text("⚠️ Masukkan hanya angka ID produk.\nContoh: 3")
+        
+# ================= BROADCAST =================
+async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        return
+    if not context.args:
+        await update.message.reply_text("Gunakan: /broadcast [pesan]")
+        return
+
+    text = " ".join(context.args)
+    users = get_all_users()
+    success = 0
+    for uid in users:
+        try:
+            await context.bot.send_message(uid, text)
+            success += 1
+        except:
+            pass
+    await update.message.reply_text(f"✅ Broadcast terkirim ke {success} user.")
