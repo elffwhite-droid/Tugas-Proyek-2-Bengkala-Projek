@@ -95,3 +95,11 @@ async def hapus_produk_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not data:
         await update.message.reply_text("❌ Belum ada produk yang bisa dihapus.")
         return
+    
+    teks = "🗑️ **Daftar Produk**\nKetik **ID** yang ingin dihapus:\n\n"
+    for row in data:
+        teks += f"ID: {row[0]} | {row[1]} - Rp {row[2]:,}\n"
+
+    teks += "\nContoh: ketik 3 untuk menghapus produk ID 3"
+
+    await update.message.reply_text(teks, parse_mode="Markdown")
