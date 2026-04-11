@@ -40,3 +40,17 @@ async def tambah_harga(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except:
         await update.message.reply_text("?? Harga harus berupa angka. Coba lagi:")
         return HARGA
+    
+async def tambah_stok(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("? Hanya admin yang boleh.")
+        context.user_data.clear()
+        return ConversationHandler.END
+
+    try:
+        context.user_data['stok'] = int(update.message.text.strip())
+        await update.message.reply_text("?? Masukkan **deskripsi** produk:")
+        return DESKRIPSI
+    except:
+        await update.message.reply_text("?? Stok harus angka. Coba lagi:")
+        return STOK
