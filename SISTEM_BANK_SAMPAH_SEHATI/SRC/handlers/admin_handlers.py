@@ -103,3 +103,13 @@ async def hapus_produk_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     teks += "\nContoh: ketik 3 untuk menghapus produk ID 3"
 
     await update.message.reply_text(teks, parse_mode="Markdown")
+    
+async def handle_hapus_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        return
+    try:
+        produk_id = int(update.message.text.strip())
+        hapus_produk(produk_id)
+        await update.message.reply_text(f"✅ Produk ID {produk_id} berhasil dihapus!", reply_markup=main_menu())
+    except:
+        await update.message.reply_text("⚠️ Masukkan hanya angka ID produk.\nContoh: 3")
