@@ -49,3 +49,21 @@ async def katalog(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for row in data:
         teks += f"{row[1]} - Rp {row[2]:,} | Stok: {row[3]}\n{row[4]}\n\n"
     await update.message.reply_text(teks, parse_mode="Markdown", reply_markup=main_menu())
+async def handle_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.strip()
+    if text in {"♻️ Jenis Sampah", "Jenis Sampah"}:
+        await jenis(update, context)
+    elif text in {"💰 Harga", "Harga"}:
+        await harga(update, context)
+    elif text in {"📅 Jadwal", "Jadwal"}:
+        await jadwal(update, context)
+    elif text in {"🕒 Jam", "Jam"}:
+        await jam(update, context)
+    elif text in {"📚 Edukasi", "Edukasi"}:
+        await edukasi(update, context)
+    elif text in {"🛍️ Katalog", "Katalog"}:
+        await katalog(update, context)
+    elif text in {"📸 Lapor Sampah", "Lapor Sampah"}:
+        await lapor_start(update, context)
+    else:
+        await update.message.reply_text("Pilihan tidak dikenali.", reply_markup=main_menu())
