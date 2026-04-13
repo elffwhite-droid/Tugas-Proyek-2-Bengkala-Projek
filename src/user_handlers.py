@@ -82,3 +82,29 @@ async def lapor_handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text in {"Selesai Laporan", "✅ Selesai Laporan"}:
         await update.message.reply_text("Mode laporan ditutup.", reply_markup=main_menu())
         return ConversationHandler.END
+        
+        message_text = text if text and text not in {"Selesai Laporan", "✅ Selesai Laporan"} else None
+    photo_file_id = update.message.photo[-1].file_id if update.message.photo else None
+    location = update.message.location
+
+    simpan_laporan(user.id, user.full_name, message_text, photo_file_id,
+                   location.latitude if location else None,
+                   location.longitude if location else None)
+
+    try:
+        if message_text:
+            await context.bot.send_message(ADMIN_ID, f"LAPORAN BARU\n{user.full_name}\n{message_text}")
+        if photo_file_id:
+            await context.bot.send_photo(ADMIN_ID, photo_file_id, caption=f"Foto dari {user.full_name}")
+        if location:
+            await context.bot.send_location(ADMIN_ID, location.latitude, location.longitude)
+
+        await update.message.reply_text("Laporan berhasil dikirim ke admin!")
+    except:
+        await update.message.reply_text("Laporan tersimpan.")
+
+    return LAPOR
+
+async def lapor_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Mode laporan dibatalkan.", reply_markup=main_menu())
+    return ConversationHandler.END
