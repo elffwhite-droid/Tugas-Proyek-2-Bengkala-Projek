@@ -21,3 +21,31 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Selamat datang di Sehati Waste Bot!\n\nGunakan menu di bawah:",
         parse_mode="Markdown", reply_markup=main_menu()
     )
+    
+async def bantuan(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Gunakan menu atau /lapor untuk mulai", reply_markup=main_menu())
+
+async def jenis(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(JENIS_SAMPAH, reply_markup=main_menu())
+
+async def harga(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(HARGA_SAMPAH, reply_markup=main_menu())
+
+async def jadwal(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(JADWAL, reply_markup=main_menu())
+
+async def jam(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(JAM, reply_markup=main_menu())
+
+async def edukasi(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(EDUKASI, reply_markup=main_menu())
+
+async def katalog(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    data = get_produk()
+    if not data:
+        await update.message.reply_text("Belum ada produk.", reply_markup=main_menu())
+        return
+    teks = "KATALOG PRODUK\n"
+    for row in data:
+        teks += f"{row[1]} - Rp {row[2]:,} | Stok: {row[3]}\n{row[4]}\n\n"
+    await update.message.reply_text(teks, parse_mode="Markdown", reply_markup=main_menu())
