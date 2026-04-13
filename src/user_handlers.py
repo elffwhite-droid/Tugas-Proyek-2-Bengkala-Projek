@@ -67,3 +67,18 @@ async def handle_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await lapor_start(update, context)
     else:
         await update.message.reply_text("Pilihan tidak dikenali.", reply_markup=main_menu())
+    
+async def lapor_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "Mode Laporan Aktif\n\nSilakan kirim teks, foto, atau lokasi. Tekan Selesai Laporan jika sudah selesai.",
+        reply_markup=lapor_keyboard()
+    )
+    return LAPOR
+
+async def lapor_handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    text = update.message.text
+
+    if text in {"Selesai Laporan", "✅ Selesai Laporan"}:
+        await update.message.reply_text("Mode laporan ditutup.", reply_markup=main_menu())
+        return ConversationHandler.END
