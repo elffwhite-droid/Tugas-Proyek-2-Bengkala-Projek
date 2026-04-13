@@ -13,3 +13,11 @@ HARGA_SAMPAH = """HARGA SAAT INI:\n• Plastik : Rp 2.000 / kg\n• Botol   : Rp
 JADWAL = "Pengambilan: Senin, Rabu, Jumat"
 JAM = "Jam operasional: 08.00 - 16.00 WIB"
 EDUKASI = """Pisahkan sampah organik dan non-organik."""
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    simpan_user(user.id, user.full_name, user.username)
+    await update.message.reply_text(
+        "Selamat datang di Sehati Waste Bot!\n\nGunakan menu di bawah:",
+        parse_mode="Markdown", reply_markup=main_menu()
+    )
