@@ -40,3 +40,42 @@ CREATE TABLE IF NOT EXISTS laporan (
 """)
 
 conn.commit()
+
+# ================= FUNGSI DATABASE =================
+def tambah_produk(nama, harga, stok, deskripsi, foto_id):
+    cursor.execute(
+        "INSERT INTO produk (nama, harga, stok, deskripsi, foto_id) VALUES (?, ?, ?, ?, ?)",
+        (nama, harga, stok, deskripsi, foto_id)
+    )
+    conn.commit()
+    
+
+def get_produk():
+    cursor.execute("SELECT * FROM produk")
+    return cursor.fetchall()
+
+
+def hapus_produk(produk_id: int):
+    cursor.execute("DELETE FROM produk WHERE id = ?", (produk_id,))
+    conn.commit()
+
+
+def simpan_user(user_id, full_name, username):
+    cursor.execute("""
+        INSERT OR REPLACE INTO users (user_id, full_name, username)
+        VALUES (?, ?, ?)
+    """, (user_id, full_name, username))
+    conn.commit()
+
+
+def simpan_laporan(user_id, full_name, message=None, photo_file_id=None, latitude=None, longitude=None):
+    cursor.execute("""
+        INSERT INTO laporan (user_id, full_name, message, photo_file_id, latitude, longitude)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (user_id, full_name, message, photo_file_id, latitude, longitude))
+    conn.commit()
+
+
+def get_all_users():
+    cursor.execute("SELECT user_id FROM users")
+    return [row[0] for row in cursor.fetchall()]
