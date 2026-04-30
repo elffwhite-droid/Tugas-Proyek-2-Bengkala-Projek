@@ -39,3 +39,18 @@ async def trigger_error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await send_error_report(context, e, update)
         await update.message.reply_text(f"✅ Simulasi selesai. Error: {type(e).__name__}")
+
+def main():
+    app = ApplicationBuilder().token(TOKEN).build()
+
+    lapor_handler = ConversationHandler(
+        entry_points=[
+            CommandHandler("lapor", lapor_start),
+            MessageHandler(filters.Regex(r'^(📸 Lapor Sampah|Lapor Sampah)$'), lapor_start)
+        ],
+        states={ 
+            LAPOR: [MessageHandler(filters.ALL & ~filters.COMMAND, lapor_handle)] 
+        },
+        fallbacks=[CommandHandler("cancel", lapor_cancel)],
+        per_chat=True, per_user=True
+    )
