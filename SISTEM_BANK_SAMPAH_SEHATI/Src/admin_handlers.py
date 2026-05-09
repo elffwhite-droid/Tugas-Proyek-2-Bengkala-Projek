@@ -53,12 +53,12 @@ async def tambah_foto(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not update.message.photo:
         await update.message.reply_text("❌ Mohon kirimkan **FOTO** produk:")
         return FOTO
-    
+
     # Ambil ID foto ukuran terbesar
     foto_id = update.message.photo[-1].file_id
-    
+
     try:
-        # MEMANGGIL DATABASE (Pastikan di database.py sudah ada 5 kolom)
+        # MEMANGGIL DATABASE 
         tambah_produk(
             context.user_data['nama'],
             context.user_data['harga'],
@@ -85,6 +85,7 @@ async def hapus_produk_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not data:
         await update.message.reply_text("📂 Katalog masih kosong.")
         return
+
     teks = "🗑️ **Daftar Produk**\nKetik **ID** produk untuk menghapus:\n\n"
     for r in data: 
         teks += f"ID: `{r[0]}` | {r[1]}\n"
